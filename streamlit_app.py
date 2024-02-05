@@ -9,7 +9,7 @@ from langchain.chains import RetrievalQA
 st.set_page_config(page_title='🦜🔗 Ask the Doc App')
 st.title('🦜🔗 Query the Doc 📚')
 
-openai_api_key=None
+# openai_api_key=None
 
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", type="password")
