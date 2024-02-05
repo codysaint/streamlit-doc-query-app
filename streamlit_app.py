@@ -9,9 +9,10 @@ from langchain.chains import RetrievalQA
 st.set_page_config(page_title='🦜🔗 Ask the Doc App')
 st.title('🦜🔗 Query the Doc 📚')
 
+openai_api_key=None
 
 with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", type="password", disabled=not (uploaded_file and query_text))
+    openai_api_key = st.text_input("OpenAI API Key", type="password")
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
     # "[View the source code](https://github.com/codysaint/)"
     # "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/codysaint/)"
@@ -44,7 +45,7 @@ with st.form('myform', clear_on_submit=True):
     query_text = st.text_input('Enter your question:', placeholder = 'Please provide a short summary.', disabled=not uploaded_file)   
 
     # openai_api_key = st.text_input('OpenAI API Key', type='password', disabled=not (uploaded_file and query_text))
-    submitted = st.form_submit_button('Submit', disabled=not(uploaded_file and query_text))
+    submitted = st.form_submit_button('Submit', disabled=not(uploaded_file and openai_api_key and query_text))
 
     if submitted and openai_api_key.startswith('sk-'):
         with st.spinner('Calculating...'):
